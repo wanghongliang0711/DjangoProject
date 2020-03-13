@@ -1,0 +1,81 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>首页</title>
+<script src="/static/jquery-2.2.2.min.js"></script>
+</head>
+<body>
+	<h1>这是测试网页</h1>
+	<hr>
+	{{hello}}
+	<hr>
+	这是相当华丽的分割线
+	<br/>
+	<br/>
+	<hr>
+	<a href='/filepath/'>文件地址</a><br/>
+	<a href='/index/'>index</a><br/>
+	<a href='/selectPeopleCard/'>查找PeopleCard数据</a><br/>
+	<a href='/selectMainTable/'>查找MainTable数据</a><br/>
+	<br/>
+	<br/>
+	<form enctype="multipart/form-data" action="/uploadFile/" method="post">
+		
+		<input type="file" name="myfile" />
+		<br/>
+		<input type="submit" value="upload" /><br/>
+	</form>
+	<br/>
+	<br/>
+	<br/>
+	<form enctype="multipart/form-data" action="/uploadFile1/" method="post">
+		
+		<input type="file" name="myfile" />
+		<br/>
+		<input type="submit" value="upload" />
+
+		
+		<br/>
+	</form>
+	
+	<br/>
+	<br/>
+	<br/>
+	
+
+	
+	<form enctype="multipart/form-data" action="/selectMainTable/" method="get">
+		
+		<label for='device_id'>unit_id:</label>
+		<input id='device_id' type='text' name='device_id'><br/>
+		<label for='travel_date'>驾驶日期:</label>
+		<input type="date" id='user_date' name="user_date"/>
+		<input type="submit" value="OK" /><br/>
+	</form>
+	<br/>
+	<br/>
+	
+	
+		<div class="a">
+			baidu一下
+		</div>
+		<button>get请求数据</button>
+		
+</body>
+</html>
+
+<script>
+	$('button').click(function(){
+			$.get('index',function(data){
+				$('div').append(data.unitid)
+			})
+	
+	})
+
+</script>
+
+
+
+

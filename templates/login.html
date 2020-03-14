@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/style.css">
+    <script type="text/javascript">
+	 function checkform(){
+
+	 if(document.login.username.value==""/* ||document.login.password.value=="" */){
+	 alert("请输入用户名！");
+	 return false;
+	 }
+
+	 if(/* document.login.username.value==""|| */document.login.password.value==""){
+	 alert("请输入密码！");
+	 return false;
+	 }
+
+
+	  /* if(document.studentUpda.upassword1.value!=document.studentUpda.upassword2.value){
+	 alert("密码不统一！");
+	 return false;
+	 } */
+	 }
+
+	 </script>
+</head>
+<body>
+    <div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center">
+					<ul class="menu">
+					</ul>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4">
+					<!-- Start Sign In Form -->
+					<form action="users/log" class="fh5co-form animate-box" data-animate-effect="fadeIn" method="post" name="login" onsubmit="return checkform();">
+						<center><h2>登录</h2></center>
+						<div class="form-group">
+							<label for="username" class="sr-only">Username</label>
+							<input type="text" class="form-control" id="username"  name="username" placeholder="username" autocomplete="off">
+						</div>
+						<div class="form-group">
+							<label for="password" class="sr-only">Password</label>
+							<input type="password" class="form-control" id="password" name="password" placeholder="password" autocomplete="off">
+						</div>
+					<center>
+						<div style="color:red">
+                            {% if LoginResult == "1" %}
+                                用户名错误
+                            {% endif %}
+                            {% if LoginResult == "2" %}
+                                密码错误
+                            {% endif %}
+                            {% if LoginResult == "3" %}
+                                你已被禁用系统，请联系管理员解除禁用!
+                            {% endif %}
+                        </div>
+                    </center>
+
+						<div class="form-group">
+						<center>	<input type="submit" value="登录" class="btn btn-primary"></center>
+						</div>
+					</form>
+					<!-- END Sign In Form -->
+
+				</div>
+			</div>
+			<div class="row" style="padding-top: 60px; clear: both;">
+				<div class="col-md-12 text-center">
+                    <a href="#">联系我们</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#">开放平台</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#">认证空间</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#">官方微博</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" target="_blank">在线客服</a>
+                </div>
+			</div>
+
+			<div class="row" style="padding-top: 60px; clear: both;">
+				<div class="col-md-12 text-center">
+
+				Copyright &copy; 2017 - 2018 WangHongLiang. All Rights Reserved.<br />
+                王洪亮&nbsp;&nbsp;&nbsp;版权所有
+
+
+
+
+
+				</div>
+			</div>
+
+		</div>
+
+
+
+</body>
+</html>

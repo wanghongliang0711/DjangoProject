@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<base href="<%=basePath%>">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="/static/css/pintuer.css">
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <script src="/static/js/jquery.js"></script>
+</head>
+<body style="background-color:#02203C;">
+<div class="header bg-main">
+  <div class="logo margin-big-left fadein-top">
+    <h1><img src="/static/images/7.jpg" class="radius-circle rotate-hover" height="50" alt="" />电厂节能数据研究与分析</h1>
+  </div>
+  <div class="head-r"> &nbsp;<a class="button button-little bg-red" href="login/login.jsp">退出登录</a> </div>
+</div>
+<div class="leftnav">
+  <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
+  <h2><span class="icon-user"></span>用户中心</h2>
+  <ul style="display:block">
+<li><a href="project/NewsAdd.jsp" target="right"><font color="#fff"><span class="icon-caret-right"></span>添加公告</font></a></li>
+<li><a href="news/list" target="right"><font color="#fff"><span class="icon-caret-right"></span>公告管理</font></a></li>
+
+ <li><a href="project/AddLogin.jsp" target="right"><font color="#fff"><span class="icon-caret-right"></span>添加用户</font></a></li>
+    <li><a href="users/list" target="right"><font color="#fff"><span class="icon-caret-right"></span>删除用户</font></a></li>
+
+   <li><a href="users/list1" target="right"><font color="#fff"><span class="icon-caret-right"></span>冻结用户/解冻用户</font></a></li>
+
+    <li><a href="project/ChangePassword.jsp" target="right"><font color="#fff"><span class="icon-caret-right"></span>修改密码</font></a></li>
+
+     <li><a href="dcstodb/list" target="right"><font color="#fff"><span class="icon-caret-right"></span>数据库设计规范</font></a></li>
+    <li><a href="MulAnalysis/list" target="right"><font color="#fff"><span class="icon-caret-right"></span>记录的数据</font></a></li>
+  </ul>
+  <h2><span class="icon-pencil-square-o"></span>煤耗+主汽温度（机侧）分析</h2>
+  <ul>
+
+  <li><a href="Bnsttresult/listAccept" target="right"><font color="#fff"><span class="icon-caret-right"></span>合格数据</font></a></li>
+  <li><a href="Bnsttresult/listReject" target="right"><font color="#fff"><span class="icon-caret-right"></span>不合格数据</font></a></li>
+  <li><a href="Bnsttresult/listDelay" target="right"><font color="#fff"><span class="icon-caret-right"></span>无法判断数据</font></a></li>
+
+    <li><a href="project/Bnsttresultcount.jsp" target="right"><font color="#fff"><span class="icon-caret-right"></span>结果汇总</font></a></li>
+ <li><a href="Bnsttresult/listAllDown" target="right"><font color="#fff"><span class="icon-caret-right"></span>导出所有处理结果</font></a></li>
+<!--     <li><a href="project/BnsttMap.jsp" target="right"><font color="#fff"><span class="icon-caret-right"></span>结果查询</font></a></li> -->
+
+  </ul>
+
+   <h2><span class="icon-pencil-square-o"></span>煤耗+主汽温度（炉侧）分析</h2>
+  <ul>
+    <li><a href="Bnsbtggcsresult/listAccept" target="right"><font color="#fff"><span class="icon-caret-right"></span>合格数据</font></a></li>
+  <li><a href="Bnsbtggcsresult/listReject" target="right"><font color="#fff"><span class="icon-caret-right"></span>不合格数据</font></a></li>
+  <li><a href="Bnsbtggcsresult/listDelay" target="right"><font color="#fff"><span class="icon-caret-right"></span>无法判断数据</font></a></li>
+
+    <li><a href="project/Bnsbtggcsresultcount.jsp" target="right"><font color="#fff"><span class="icon-caret-right"></span>结果汇总</font></a></li>
+    <li><a href="Bnsbtggcsresult/listAllDown" target="right"><font color="#fff"><span class="icon-caret-right"></span>导出所有处理结果</font></a></li>
+    <!-- <li><a href="project/Bnsbtggcs.jsp" target="right"><font color="#fff"><span class="icon-caret-right"></span>结果查询</font></a></li>    -->
+  </ul>
+
+</div>
+
+<script type="text/javascript">
+$(function(){
+  $(".leftnav h2").click(function(){
+	  $(this).next().slideToggle(200);
+	  $(this).toggleClass("on");
+  })
+  $(".leftnav ul li a").click(function(){
+	    $("#a_leader_txt").text($(this).text());
+  		$(".leftnav ul li a").removeClass("on");
+		$(this).addClass("on");
+  })
+});
+</script>
+
+
+
+<ul class="bread">
+  <li><a href="news/list1" target="right" class="icon-home" ><font color="#fff"> 首页</font></a></li>
+
+ </ul>
+<div class="admin">
+ <iframe scrolling="auto"  src="news/list1" name="right" width="100%" height="100%"></iframe>
+</div>
+<div style="text-align:center;">
+</div>
+</body>
+</html>

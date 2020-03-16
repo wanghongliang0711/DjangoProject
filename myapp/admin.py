@@ -4,7 +4,7 @@ from .models import Users
 
 
 class UsersAdmin(admin.ModelAdmin):
-    list_display = ('id', 'username', 'password', 'power')
+    list_display = ('id', 'username', 'password', 'power', 'apply')
 
 
 admin.site.register(Users, UsersAdmin)

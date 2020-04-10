@@ -15,6 +15,7 @@ urlpatterns = [
     path('login/', BaseView.login, name="login"),
     path('registerpage/', views.registerpage, name="registerpage"),
     path('register/', views.register, name="register"),
+    path('line_basic/', views.line_basic, name="line_basic"),
     path('user/', include(user_patterns)),
 
 

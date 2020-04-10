@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
+from myapp import views
 
 
 urlpatterns = [
@@ -23,3 +24,6 @@ urlpatterns = [
     path('myapp/', include('myapp.urls')),
     path('admin/', admin.site.urls),
 ]
+
+# handler404 = views.page_not_found
+# handler500 = views.server_error

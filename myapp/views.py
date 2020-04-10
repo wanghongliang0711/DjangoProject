@@ -3,6 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.template.loader import get_template
 from django.http import HttpResponse,JsonResponse
 from myapp.models import Users
+# from myapp.view.BaseView import BaseView
 # Create your views here.
 
 
@@ -12,6 +13,11 @@ def homepage(request):
     # html = template.render(locals())
     # return HttpResponse(html)
 
+def page_not_found(request, exception):
+    return render(request, "error_page/404.html", {"exception": exception})
+
+def server_error(request):
+    return render(request, "error_page/500.html")
 
 def userhomepage(request):
     return render(request, "user/userhomepage.html")
@@ -44,6 +50,7 @@ def login(request):
     if request.method == "POST":
         name = request.POST.get('username')
         pwd = request.POST.get('password')
+        print("88888")
         if name and pwd:
             LoginResult = login_varify(name, pwd)  # 0-登录成功 1-用户名错误 2-密码错误 3-被禁用 4-管理员登录
             if LoginResult == "0":   # 普通用户登录成功

@@ -25,22 +25,39 @@
         </script>
         <script>
 
-        var chart = Highcharts.chart('container', {
-            title: {
-                    text: '2010 ~ 2016 年太阳能行业就业人员发展情况'
+        var chart = Highcharts.chart('container', {   // 生成highcharts对象
+            title: {                                 // 设置主标题
+                    text: '主标题'
             },
-            subtitle: {
-                    text: '数据来源：thesolarfoundation.com'
+            subtitle: {                                // 设置副标题
+                    text: '副标题'
             },
-            yAxis: {
+            chart: {
+                    backgroundColor: '#DCDCDC'       // 绘图背景颜色
+            },
+            yAxis: [{
                     title: {
-                            text: '就业人数'
+                            text: 'y轴标题1'
+                    },
+                    tickPositions: [0,20],             // 固定y轴值
+                    labels: {
+                            format: '{value} m/s',    // y轴线的单位
                     }
-            },
+            },{
+                    title: {
+                            text: 'y轴标题2'
+                    },
+                    tickPositions: [-90,0,90],         // 固定y轴值
+                    labels: {
+                            format: '{value} km/h',    // y轴线的单位
+                    },
+                    opposite:true                      // 让俩y轴分别在左右
+            }],
             legend: {
-                    layout: 'vertical',
-                    align: 'right',
-                    verticalAlign: 'middle'
+                    layout: 'vertical',        // 每条线的解释是horizontal水平布局还是vertical垂直布局
+                    align: 'right',            // 线解释部分  在绘图的左,中还右
+                    verticalAlign: 'middle',  // 垂直方向 上,中还是下
+                    borderWidth: 1            // 给标头加框,0是无边框
             },
             plotOptions: {
                     series: {
@@ -53,19 +70,34 @@
             },
             series: [{
                     name: '安装，实施人员',
-                    data: data1
+                    data: data1,
+                    tooltip: {
+                         valueSuffix: ' G'   // 线的值的单位
+                    }
             }, {
                     name: '工人',
-                    data: data2
+                    data: data2,
+                    tooltip: {
+                         valueSuffix: ' 单位工人'   // 线的值的单位
+                    }
             }, {
                     name: '销售',
-                    data: data3
+                    data: data3,
+                    tooltip: {
+                         valueSuffix: ' 单位销售'   // 线的值的单位
+                    }
             }, {
                     name: '项目开发',
-                    data: data4
+                    data: data4,
+                    tooltip: {
+                         valueSuffix: ' 单位项目开发'   // 线的值的单位
+                    }
             }, {
                     name: '其他',
-                    data: data5
+                    data: data5,
+                    tooltip: {
+                         valueSuffix: ' 单位其他'   // 线的值的单位
+                    }
             }],
             responsive: {
                     rules: [{

@@ -30,6 +30,15 @@ def line_basic(request):
     data5 = [9, 5, 9, 15, "", 2, 4, 1, 6, 1, 5]
     return render(request, "highcharts/line_basic.html", {"data1": data1,"data2": data2,"data3":data3,"data4":data4,"data5":data5} )
 
+def line_basic_xAxis(request):
+    data1 = [1, 2, 3, "", 5, 6, 7, "", 9, 10, 11]
+    data2 = [9, 8, 7, 4, "", 6, 7, 4, 3, 10, 8]
+    data3 = [3, 8, 6, 4, 9, 6, 2, 8, 3, 1, 9]
+    data4 = [5, 6, 9, 0, "", 2, 4, 5, 3, 1, 3]
+    data5 = [9, 5, 9, 15, "", 2, 4, 1, 6, 1, 5]
+    return render(request, "highcharts/line_basic_xAxis.html", {"data1": data1,"data2": data2,"data3":data3,"data4":data4,"data5":data5} )
+
+
 def registerpage(request):
     return render(request, "register.html")
 

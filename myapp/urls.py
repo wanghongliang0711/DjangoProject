@@ -16,6 +16,7 @@ urlpatterns = [
     path('registerpage/', views.registerpage, name="registerpage"),
     path('register/', views.register, name="register"),
     path('line_basic/', views.line_basic, name="line_basic"),
+    path('line_basic_xAxis/', views.line_basic_xAxis, name="line_basic_xAxis"),
     path('user/', include(user_patterns)),
 
 

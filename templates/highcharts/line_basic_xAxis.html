@@ -35,6 +35,9 @@
             chart: {
                     backgroundColor: '#DCDCDC'       // 绘图背景颜色
             },
+            xAxis:{
+                    categories:["one","","two","","",123,124,125,126,"",""]
+            },
             yAxis: [{
                     title: {
                             text: 'y轴标题1'
@@ -58,15 +61,6 @@
                     align: 'right',            // 线解释部分  在绘图的左,中还右
                     verticalAlign: 'middle',  // 垂直方向 上,中还是下
                     borderWidth: 1            // 给标头加框,0是无边框
-            },
-            plotOptions: {
-                    series: {
-                            label: {
-                                    connectorAllowed: false
-                            },
-                            pointStart: 0,    //X 轴起点
-                            pointInterval: 1   //X 轴点间隔
-                    }
             },
             series: [{
                     name: '安装，实施人员',

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+
+<!--初始化代码-->
+
+</head>
+	<body>
+	test
+	 <table id="example">
+    
+	</table>
+		
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+ 
+<!--引入JavaScript-->
+<script type="text/javascript" charset="utf8" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+ 
+	<script>
+ var data = [
+        [
+            "Tiger Nixon",
+            "System Architect",
+            "Edinburgh",
+            "5421",
+            "2011/04/25",
+            "$3,120"
+        ],
+        [
+            "Garrett Winters",
+            "Director",
+            "Edinburgh",
+            "8422",
+            "2011/07/25",
+            "$5,300"
+        ]
+    ];
+	 $(function () {
+	   var mytable = $('#example').DataTable( {
+			data:data,
+			columns:[{'title': 'time'}, {'title': 'quality'}, {'title': 'velocity'}, {'title': 'direction'}, {'title': 'lng'},{'title': 'tripid'}]
+	   }
+	   );
+	   
+	  });
+</script>
+
+	</body>
+</html>

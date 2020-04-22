@@ -1,0 +1,94 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>主页</title>
+    {% load static %}
+    <link REL="SHORTCUT ICON" HREF="{% static 'images/favicon.ico' %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+  <div id="app">
+    <v-app>
+        <v-container><span class='float-right blue--text'>总要有点东西admin页面的账密均为admin</span></v-container>
+        <v-card>
+            <v-toolbar flat color="#26A69A" dark>
+              <v-toolbar-title>工具列表</v-toolbar-title>
+            </v-toolbar>
+            <v-tabs vertical>
+              <v-tab class="title">
+                <v-icon left>mdi-account</v-icon>
+                主页内容
+              </v-tab>
+              <v-tab class="title">
+                <v-icon left>mdi-arrow-up-bold-box-outline</v-icon>
+                上传Nmea
+              </v-tab>
+
+              <v-tab class="title">
+                <v-icon left>mdi-arrow-up-bold-box</v-icon>
+                上传json
+              </v-tab>
+
+			  <v-tab class="title">
+                <v-icon left>mdi-dialpad</v-icon>
+                折线表格
+              </v-tab>
+
+              <v-tab class="title">
+                <v-icon left>mdi-car</v-icon>
+                车辆总览
+              </v-tab>
+
+              <v-tab class="title">
+                <v-icon left>mdi-run</v-icon>
+                测试页面
+              </v-tab>
+
+			  <v-tab class="title">
+                <v-icon left>mdi-book</v-icon>
+                后台页面
+              </v-tab>
+
+
+              <v-tab-item>
+                {% include 'indeximg.html'%}
+              </v-tab-item>
+
+              <v-tab-item>
+                {% include 'updatenmea.html'%}
+              </v-tab-item>
+
+
+              <v-tab-item>
+                {% include 'updatejson.html'%}
+              </v-tab-item>
+
+			  <v-tab-item>
+                <h3 style="margin:10% 15%;"><a href = "{% url 'myapp:test' %}">查看一个highcharts/datatable的例子页面</a></h3>
+              </v-tab-item>
+
+			  <v-tab-item>
+                {% include 'updatejson.html'%}
+              </v-tab-item>
+
+			  <v-tab-item>
+                <h3 style="margin:10% 15%;"><a href="{% url 'myapp:testjs102' %}">试试看基于类的视图Jsontable102</a></h3>
+			  </v-tab-item>
+
+			  <v-tab-item>
+                {% include 'updatejson.html'%}
+              </v-tab-item>
+
+            </v-tabs>
+          </v-card>
+    </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script src="{% static 'js/indexjs.js' %}"></script>
+</body>
+</html>

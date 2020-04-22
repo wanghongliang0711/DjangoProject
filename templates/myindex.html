@@ -1,0 +1,19 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>功能页面</title>
+    {% load static %}
+    <link REL="SHORTCUT ICON" HREF="{% static 'images/favicon.ico' %}"/>
+    </head>
+<body>
+<div id="app">
+    <v-app>
+        <div style="width:100%;height:70px;background:#26A69A;">
+
+        </div>
+        {% block content%}
+        {% endblock %}
+    </v-app>
+</div>
+</body>
+</html>

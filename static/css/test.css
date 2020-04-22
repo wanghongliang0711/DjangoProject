@@ -1,0 +1,18 @@
+#example{
+    	width: 100% !important;
+}
+
+.dataTable{
+	text-align:center;
+	
+}
+
+button{
+	background:#26A69A;
+	border:0;
+	border-radius:2px;
+	color:white;
+	padding:4px 8px;
+	margin-right:8px;
+}
+	

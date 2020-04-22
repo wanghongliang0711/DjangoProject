@@ -1,0 +1,12 @@
+{% extends 'myindex.html'%}
+
+{% block content%}
+
+    <h3>试试看基于类的视图Jsontable102-ListView 用来获取某个 model 中的所有数据</h3>
+    <ul>
+        {% for js102 in allJs102 %}
+            <li>{{ js102.metadata_positioning_data_positioning_time }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock%}

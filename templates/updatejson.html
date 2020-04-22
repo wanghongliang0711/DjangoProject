@@ -1,0 +1,7 @@
+<div>
+<p style="margin:3% 2%;">上传原始Json数据</p>
+  <form  action="{% url 'myapp:handlejson' %}" method="post" enctype="multipart/form-data" style="margin:10% 5%;">
+  <input type="file" name="json" >
+  <input style='background:#26A69A;border-radius:2px;color:white;padding:4px;' type="submit" value="选好Json文件点此上传">
+ </form>
+</div>

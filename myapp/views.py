@@ -161,20 +161,20 @@ def login(request):
     if request.method == "POST":
         name = request.POST.get('username')
         pwd = request.POST.get('password')
-        print("88888")
+        print("****-----login------****")
         if name and pwd:
             LoginResult = login_varify(name, pwd)  # 0-登录成功 1-用户名错误 2-密码错误 3-被禁用 4-管理员登录
             if LoginResult == "0":   # 普通用户登录成功
                 return render(request, "user/index.html")
-            elif LoginResult == "4":
-                print("管理员登录sccess")  # TODO  理员登录sccess
+            elif LoginResult == "4":   # 管理员登录成功
+                return render(request, "admin/adminhomepage.html")
             else:
                 return render(request, "login.html", {"LoginResult": LoginResult})
         else:
             return render(request, "login.html", {"error": "出现未知参数！！！"})
-        template = get_template('login.html')
-        html = template.render(locals())
-        return HttpResponse(html)
+        # template = get_template('login.html')
+        # html = template.render(locals())
+        # return HttpResponse(html)
     else:
         # template = get_template('login.html')
         # login = "这不是POST进来的！！！"
@@ -211,6 +211,67 @@ def test(r):
     return render(r, 'test.html', rst)
 
 
+# study data tables
+def blake_test(request):
+    strip = Jsontable102.objects.filter(metadata_unit_id='21C100552').values(
+        'metadata_positioning_data_positioning_time',
+        'metadata_positioning_data_quality',
+        'metadata_positioning_data_direction',
+        'metadata_positioning_data_lat', 'metadata_positioning_data_lng',
+        'metadata_positioning_data_velocity', 'metadata_tripid','metadata_positioning_data_satellite_num')
+
+    # django版本2.2,filter后得到的数据(列表里的字典,键值对先后顺序不固定,是随机的)
+    # 只能先写死了
+    biaotou = [{'title': 'time'}, {'title': 'quality'}, {'title': 'velocity'}, {'title': 'direction'}, {'title': 'lat'},
+               {'title': 'lng'}, {'title': 'tripid'}, {'title':'satellite_num'}]
+
+    allvalue, pt, gsq, vel, lat, satellite_num= [], [], [], [], [], []
+    # allvalue也先写死了,最方便
+    for i in strip:
+        allvalue.append([i['metadata_positioning_data_positioning_time'], i['metadata_positioning_data_quality'],
+                         i['metadata_positioning_data_velocity'], i['metadata_positioning_data_direction'],
+                         i['metadata_positioning_data_lat'], i['metadata_positioning_data_lng'], i['metadata_tripid'],
+                         i['metadata_positioning_data_satellite_num']])
+        pt.append(i['metadata_positioning_data_positioning_time'])
+        gsq.append(i['metadata_positioning_data_quality'])
+        vel.append(i['metadata_positioning_data_velocity'])
+        lat.append(i['metadata_positioning_data_lat'])
+        satellite_num.append(i['metadata_positioning_data_satellite_num'])
+
+    rst = {'context': allvalue, 'tablehead': biaotou, 'pt': pt, 'gsq': gsq, 'vel': vel, 'lat': lat, 'satellite_num':satellite_num}
+    return render(request, 'user/blake_test.html', rst)
+
+
+def blake_show13(request):
+    unitid = request.GET.get('nuit_id').strip()
+
+    position = request.GET.get('time').strip()
+
+    all102 = Jsontable102.objects.filter(metadata_unit_id=unitid).values(
+        'metadata_positioning_data_positioning_time',
+        'metadata_positioning_data_quality',
+        'metadata_positioning_data_direction',
+        'metadata_positioning_data_lat', 'metadata_positioning_data_lng',
+        'metadata_positioning_data_velocity',
+        'metadata_unit_id', 'metadata_tripid','metadata_positioning_data_satellite_num')
+    value100 = []
+    for i, j in enumerate(list(all102)):
+        if position in j['metadata_positioning_data_positioning_time']:
+            break
+    if i < 30:
+        start_i = 0
+    else:
+        start_i = i - 30
+    for k in list(all102)[start_i:i + 30]:
+        value100.append([k['metadata_positioning_data_positioning_time'], k['metadata_positioning_data_quality'],
+                         k['metadata_positioning_data_velocity'], k['metadata_positioning_data_direction'],
+                         k['metadata_positioning_data_lat'], k['metadata_positioning_data_lng'], k['metadata_tripid'],
+                         k['metadata_positioning_data_satellite_num']])
+
+    # value100里的内容也按顺序先写死了
+    return JsonResponse({'data': value100})
+
+
 def Show13(r):
     unitid = r.GET.get('nuit_id').strip()
 
@@ -227,7 +288,11 @@ def Show13(r):
     for i, j in enumerate(list(all102)):
         if position in j['metadata_positioning_data_positioning_time']:
             break
-    for k in list(all102)[i - 30:i + 30]:
+    if i < 30:
+        start_i = 0
+    else:
+        start_i = i - 30
+    for k in list(all102)[start_i:i + 30]:
         value100.append([k['metadata_positioning_data_positioning_time'], k['metadata_positioning_data_quality'],
                          k['metadata_positioning_data_velocity'], k['metadata_positioning_data_direction'],
                          k['metadata_positioning_data_lat'], k['metadata_positioning_data_lng'], k['metadata_tripid']])

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>admin_blake_test</title>
+    <link rel="stylesheet" href="/static/css/pintuer.css">
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <script src="/static/js/jquery.js"></script>
+</head>
+<body style="background-color:#02203C;">
+<div class="header bg-main">
+  <div class="logo margin-big-left fadein-top">
+    <h1><img src="/static/images/7.jpg" class="radius-circle rotate-hover" height="50" alt="" />admin_blake_django_project</h1>
+  </div>
+  <div class="head-r"> &nbsp;<a class="button button-little bg-red" href="#">退出登录</a> </div>
+</div>
+<div class="leftnav">
+  <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
+  <h2><span class="icon-user"></span>管理员中心</h2>
+  <ul style="display:block">
+<li><a href="{% url 'myapp:show_chart_table' %}" target="right"><font color="#fff"><span class="icon-caret-right"></span>显示图表</font></a></li>
+<li><a href="#" target="right"><font color="#fff"><span class="icon-caret-right"></span>#####</font></a></li>
+
+ <li><a href="#" target="right"><font color="#fff"><span class="icon-caret-right"></span>#####</font></a></li>
+    <li><a href="#" target="right"><font color="#fff"><span class="icon-caret-right"></span>#####</font></a></li>
+
+   <li><a href="#" target="right"><font color="#fff"><span class="icon-caret-right"></span>#####</font></a></li>
+
+    <li><a href="#" target="right"><font color="#fff"><span class="icon-caret-right"></span>#####</font></a></li>
+
+     <li><a href="#" target="right"><font color="#fff"><span class="icon-caret-right"></span>#####</font></a></li>
+    <li><a href="#" target="right"><font color="#fff"><span class="icon-caret-right"></span>#####</font></a></li>
+  </ul>
+  <h2><span class="icon-pencil-square-o"></span>煤耗+主汽温度（机侧）分析</h2>
+  <ul>
+
+  <li><a href="#" target="right"><font color="#fff"><span class="icon-caret-right"></span>#####</font></a></li>
+  <li><a href="#" target="right"><font color="#fff"><span class="icon-caret-right"></span>#####</font></a></li>
+  <li><a href="#" target="right"><font color="#fff"><span class="icon-caret-right"></span>#####</font></a></li>
+
+    <li><a href="#" target="right"><font color="#fff"><span class="icon-caret-right"></span>#####</font></a></li>
+ <li><a href="#" target="right"><font color="#fff"><span class="icon-caret-right"></span>#####</font></a></li>
+<!--     <li><a href="project/BnsttMap.jsp" target="right"><font color="#fff"><span class="icon-caret-right"></span>结果查询</font></a></li> -->
+
+  </ul>
+
+   <h2><span class="icon-pencil-square-o"></span>煤耗+主汽温度（炉侧）分析</h2>
+  <ul>
+    <li><a href="#" target="right"><font color="#fff"><span class="icon-caret-right"></span>#####</font></a></li>
+  <li><a href="#" target="right"><font color="#fff"><span class="icon-caret-right"></span>#####</font></a></li>
+  <li><a href="#" target="right"><font color="#fff"><span class="icon-caret-right"></span>#####</font></a></li>
+
+    <li><a href="#" target="right"><font color="#fff"><span class="icon-caret-right"></span>#####</font></a></li>
+    <li><a href="#" target="right"><font color="#fff"><span class="icon-caret-right"></span>#####</font></a></li>
+    <!-- <li><a href="project/Bnsbtggcs.jsp" target="right"><font color="#fff"><span class="icon-caret-right"></span>结果查询</font></a></li>    -->
+  </ul>
+
+</div>
+
+<script type="text/javascript">
+$(function(){
+  $(".leftnav h2").click(function(){
+	  $(this).next().slideToggle(200);
+	  $(this).toggleClass("on");
+  })
+  $(".leftnav ul li a").click(function(){
+	    $("#a_leader_txt").text($(this).text());
+  		$(".leftnav ul li a").removeClass("on");
+		$(this).addClass("on");
+  })
+});
+</script>
+
+
+
+<ul class="bread">
+  <li><a href="#" target="right" class="icon-home" ><font color="#fff"> 首页</font></a></li>
+
+ </ul>
+<div class="admin">
+ <iframe scrolling="auto"  src="{% url 'myapp:adminhomepage' %}" name="right" width="100%" height="100%"></iframe>
+</div>
+<div style="text-align:center;">
+</div>
+</body>
+</html>

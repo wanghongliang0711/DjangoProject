@@ -7,43 +7,84 @@
 </head>
 	<body>
 	test
+	<div id="two">
+        <p id="title" style="margin:0 38%;">车辆</p>
+        <button id="show">筛选所需列</button>
+    </div>
+
+	<div id="cbox" style="display:none;">
+        <label class="typecheck"><input type="checkbox" value="time" class="cb" checked>time</label>
+		<label class="typecheck"><input type="checkbox" value="quality" class="cb" checked>quality</label>
+		<label class="typecheck"><input type="checkbox" value="velocity" class="cb" checked>velocity</label>
+		<label class="typecheck"><input type="checkbox" value="direction" class="cb" checked>direction</label>
+		<label class="typecheck"><input type="checkbox" value="lng" class="cb" checked>lng</label>
+		<label class="typecheck"><input type="checkbox" value="tripid" class="cb" checked>tripid</label>
+    </div>
+
 	 <table id="example">
     
 	</table>
-		
+	{% load static %}
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
- 
+ 	<link rel="stylesheet" type="text/css" href="{% static 'css/test.css'%}">   <!-- 解决 scrollX: true 后表头不对齐-->
 <!--引入JavaScript-->
 <script type="text/javascript" charset="utf8" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
  
 	<script>
- var data = [
-        [
-            "Tiger Nixon",
-            "System Architect",
-            "Edinburgh",
-            "5421",
-            "2011/04/25",
-            "$3,120"
-        ],
-        [
-            "Garrett Winters",
-            "Director",
-            "Edinburgh",
-            "8422",
-            "2011/07/25",
-            "$5,300"
-        ]
+ var data = [["Tiger Nixon","System Architect","Edinburgh","5421","2011/04/25","$3,120","2011/04/25","$3,120"],
+        ["Garrett Winters","Director","Edinburgh","8422","2011/07/25","$5,300","2011/04/25","$3,120"],
+        ["Garrett","Dior","Edinbgh","8422","2011/07/25","$5,300","2011/04/25","$3,120"],
+        ["Tiger Nixon","System Architect","Edinburgh","5421","2011/04/25","$3,120","2011/04/25","$3,120"],
+        ["Garrett Winters","Director","Edinburgh","8422","2011/07/25","$5,300","2011/04/25","$3,120"],
+        ["wang","laign","english","8422","2011/07/25","$5,300","2011/04/25","$3,120"],
+        ["Tiger Nixon","System Architect","Edinburgh","5421","2011/04/25","$3,120","2011/04/25","$3,120"]
     ];
-	 $(function () {
-	   var mytable = $('#example').DataTable( {
+    var tablehead = [{'title': 'time'}, {'title': 'quality'}, {'title': 'velocity'}, {'title': 'direction'}, {'title': 'lng'},{'title': 'tripid'}, {'title': 'lng'},{'title': 'tripid'}]
+
+	var mytable = $('#example').DataTable( {
+			scrollX: true,		// 滑动块在x轴上
+	   		scrollY: 60,							// 表格高度超过420像素就显示滑动块
+	   		aLengthMenu:[[2,4], [2,4]],   // 第一个[1800,3600]是表格每页显示1800/3600条数据受第二个控制,第二个表格下拉框一页显示1800/3600条数据
 			data:data,
-			columns:[{'title': 'time'}, {'title': 'quality'}, {'title': 'velocity'}, {'title': 'direction'}, {'title': 'lng'},{'title': 'tripid'}]
-	   }
-	   );
+			columns:tablehead,
+	   		ordering:false,		// 不自动排序，会打乱原始顺序
+
+	   });
 	   
-	  });
+
+
+
+	  $('#show,#cbox').mouseover(function(){$('#cbox').show().css('background','#4CAF50');})	// 筛选所需列内容在鼠标悬停时显示,离开时隐藏
+	.mouseout(function(){$('#cbox').hide()});
+
+
+	$('.typecheck').change(function(){		// 筛选所需列的函数
+	 	 allbiaotou = [];					// 存放所有表头
+		 for(var i=0,len=tablehead.length;i<len;i++){
+				allbiaotou.push(tablehead[i]['title']);
+		 }
+
+         var nochoose = [];
+         $("input:checkbox").not("input:checked").each(function(){
+               nochoose.push($(this).val());	// 存放所有未被选中的表头
+         });
+         nochooseindex = [];
+         for(var i in nochoose){			    // 存放所有未被选中的表头在allbiaotou里的索引
+             nochooseindex.push(allbiaotou.indexOf(nochoose[i]));
+         }
+         totalindex = [];						// 所有的allbiaotou的索引值,也就是0,1...直至列表长度
+         for(var i=0,len=allbiaotou.length;i<len;i++){
+            totalindex.push(i);             // /************  push
+         }
+                                                        // /*********key => !nochooseindex.includes(key))
+         chooseindex = totalindex.filter(key => !nochooseindex.includes(key));	// js反向选中被选中的列的索引
+         alert('nochooseindex：' + nochooseindex + '\n'+'chooseindex:' +  chooseindex+'\n')
+         mytable.columns(nochooseindex).visible(false,false);	// 未选中的列的可见性为false不可见
+         mytable.columns(chooseindex).visible(true,false);		// 选中的列的可见性为true可见
+         mytable.columns.adjust().draw(false);				//  加了false后  翻页后 改变列数，不会自动翻到第一页，还停留在当前页
+    });
+
 </script>
 
 	</body>

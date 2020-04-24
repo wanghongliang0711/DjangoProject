@@ -49,7 +49,7 @@ def show_chart_table(request):
         satellite_num.append(i['metadata_positioning_data_satellite_num'])
 
     rst = {'context': allvalue, 'tablehead': biaotou, 'pt': pt, 'gsq': gsq, 'vel': vel, 'lat': lat, 'satellite_num':satellite_num}
-    return render(request, 'user/blake_test.html', rst)
+    return render(request, 'admin/admin_chart_table.html', rst)
 
 
 def blake_show13(request):

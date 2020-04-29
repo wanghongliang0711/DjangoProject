@@ -16,7 +16,7 @@ user_patterns = [
 admin_patterns = [
     path('', admin_views.adminhomepage, name="adminhomepage"),
     path('show_chart_table', admin_views.show_chart_table, name="show_chart_table"),
-
+    path('blake_show13', views.blake_show13),
 
 ]
 

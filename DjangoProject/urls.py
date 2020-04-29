@@ -22,7 +22,9 @@ from myapp import views
 urlpatterns = [
     # url(r'^$', views.homepage, name="home"),
     path('myapp/', include('myapp.urls')),
+    path('django08/', include('django08.django08_url')),
     path('admin/', admin.site.urls),
+
 ]
 
 # handler404 = views.page_not_found

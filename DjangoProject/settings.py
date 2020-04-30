@@ -27,6 +27,10 @@ DEBUG = True  # 开发环境下为True，此时我们改为False
 
 ALLOWED_HOSTS = ['*']
 
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+MAILGUN_ACCESS_KEY = 'key-55---------------------7e7'
+MAILGUN_SERVER_NAME = 'drho.tw'
+
 
 # Application definition
 
@@ -39,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myapp',
     'django08',
+    'captcha',
 ]
 
 MIDDLEWARE = [

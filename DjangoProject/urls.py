@@ -24,6 +24,7 @@ urlpatterns = [
     path('myapp/', include('myapp.urls')),
     path('django08/', include('django08.django08_url')),
     path('admin/', admin.site.urls),
+    path('captcha/', include('captcha.urls')),
 
 ]
 

@@ -10,8 +10,8 @@
                 <li class='active'><a href="{% url 'django08:django08_home' %}">Home</a></li>
                 <li><a href="{% url 'django08:django08_list' %}">浏览信息</a></li>
                 <li><a href="{% url 'django08:django08_post' %}">张贴信息(仅窗体)</a></li>
-                <li><a href='/post2db'>张贴信息</a></li>
-                <li><a href='/contact'>联络管理员</a></li>
+                <li><a href="{% url 'django08:django08_post2db' %}">张贴信息</a></li>
+                <li><a href="{% url 'django08:django08_contact' %}">联络管理员</a></li>
                 <li><a href='/admin'>后台管理</a></li>  
             </ul>
         </div>

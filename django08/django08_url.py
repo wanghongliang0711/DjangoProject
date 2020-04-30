@@ -13,6 +13,8 @@ urlpatterns = [
     re_path(r'^(?P<pid>\d+)/(?P<del_pass>\w+)/$', views.index, name="django08_home_delete"),
     path('list/', views.listing, name="django08_list"),
     path('post/', views.posting, name="django08_post"),
+    path('contact/', views.contact, name="django08_contact"),
+    path('post2db/', views.post2db, name="django08_post2db"),
 
 
 ]

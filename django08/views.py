@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-from django08 import models
+from django08 import models, forms
+from django.core.mail import EmailMessage
+from django.urls import reverse
 
 
 # Create your views here.
@@ -45,4 +47,49 @@ def posting(request):
     message = '如要张贴信息，则每一个字段都要填...'
     return render(request, 'django08/posting.html', locals())
 
+
+def contact(request):
+    if request.method == "POST":
+        form = forms.ContactForm(request.POST)
+        if form.is_valid():
+            message = "感谢您的来信，我们会尽速处理您的宝贵意见。"
+            user_name = form.cleaned_data['user_name']
+            user_city = form.cleaned_data['user_city']
+            user_school = form.cleaned_data['user_school']
+            user_email = form.cleaned_data['user_email']
+            user_message = form.cleaned_data['user_message']
+            mail_body = u'''
+            网友姓名：{}
+            居住城市：{}
+            是否在学：{}
+            反应意见：如下
+            {}'''.format(user_name, user_city, user_school, user_message)
+
+            email = EmailMessage('来自【不吐不快】网站的网友意见',
+                                 mail_body,
+                                 user_email,
+                                 ['skynet.tw@gmail.com'])
+            email.send()
+        else:
+            message = "请检查您输入的信息是否正确！"
+    else:
+        form = forms.ContactForm()
+    return render(request, 'django08/contact.html', locals())
+
+
+def post2db(request):
+    if request.method == 'POST':
+        post_form = forms.PostForm(request.POST)
+        if post_form.is_valid():
+            message = "您的信息已保存，要等管理员启用后才看得到。"
+            post_form.save()
+            # return HttpResponseRedirect("http://wwww.baidu.com")
+            return HttpResponseRedirect(reverse('django08:django08_list'))
+        else:
+            message = '如要张贴信息，则每一个字段都要填...'
+    else:
+        post_form = forms.PostForm()
+        message = '如要张贴信息，则每一个字段都要填...'
+
+    return render(request, 'django08/post2db.html', locals())
 

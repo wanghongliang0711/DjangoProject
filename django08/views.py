@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django08 import models, forms
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, send_mail
 from django.urls import reverse
 
 
@@ -65,11 +65,11 @@ def contact(request):
             反应意见：如下
             {}'''.format(user_name, user_city, user_school, user_message)
 
-            email = EmailMessage('来自【不吐不快】网站的网友意见',
+            email = send_mail('来自【不吐不快】网站的网友意见',
                                  mail_body,
-                                 user_email,
-                                 ['skynet.tw@gmail.com'])
-            email.send()
+                                 '578050080@qq.com',
+                                 [user_message,])  # TODO
+            print(email)
         else:
             message = "请检查您输入的信息是否正确！"
     else:

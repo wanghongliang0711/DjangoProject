@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django08 import models, forms
-from django.core.mail import EmailMessage, send_mail
+from django.core.mail import EmailMessage, send_mail, EmailMultiAlternatives
 from django.urls import reverse
+import os
 
 
 # Create your views here.
@@ -64,12 +65,19 @@ def contact(request):
             是否在学：{}
             反应意见：如下
             {}'''.format(user_name, user_city, user_school, user_message)
-
-            email = send_mail('来自【不吐不快】网站的网友意见',
-                                 mail_body,
-                                 '578050080@qq.com',
-                                 [user_message,])  # TODO
-            print(email)
+            # print(mail_body)
+            # email = send_mail('来自【不吐不快】网站的网友意见',
+            #                      mail_body,
+            #                      '578050080@qq.com',
+            #                      [user_email,])
+            msg = EmailMultiAlternatives('这是邮件主题', '<a href="http://www.baidu.com/">百度</a>',
+                                         '578050080@qq.com', [user_email,])
+            msg.content_subtype = "html"
+            # 添加附件（可选）
+            print(os.getcwd())
+            msg.attach_file('pip_list.txt')
+            msg.send()
+            # print(email)  # 1
         else:
             message = "请检查您输入的信息是否正确！"
     else:

@@ -29,16 +29,17 @@ ALLOWED_HOSTS = ['*']
 
 
 # 邮件配置
+EMAIL_USE_SSL = True
 EMAIL_HOST = 'smtp.qq.com'
-EMAIL_PORT = 587
+EMAIL_PORT = 465
 EMAIL_HOST_USER = '578050080@qq.com'
 EMAIL_HOST_PASSWORD = 'xocshslcyvmobfgb'  # '获取的授权码'
-EMAIL_USE_TLS = True #必须为True
-EMAIL_USE_SSL = False
-EMAIL_SSL_CERTFILE = None
-EMAIL_SSL_KEYFILE = None
-EMAIL_TIMEOUT = None
-DEFAULT_FROM_EMAIL = '578050080@qq.com'
+# EMAIL_USE_TLS = True #必须为True
+
+# EMAIL_SSL_CERTFILE = None
+# EMAIL_SSL_KEYFILE = None
+# EMAIL_TIMEOUT = None
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 # EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
 # MAILGUN_ACCESS_KEY = 'key-55---------------------7e7'
 # MAILGUN_SERVER_NAME = 'drho.tw'
